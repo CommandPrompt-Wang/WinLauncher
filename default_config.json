@@ -1,0 +1,49 @@
+{
+  "buttons": [
+    {
+      "type": "command",
+      "name": "打开终端",
+      "icon": ":/icons/terminal.png",
+      "cmd": "wt.exe"
+    },
+    {
+      "type": "menu",
+      "name": "开发工具",
+      "icon": ":/icons/dev.png",
+      "items": [
+        {
+          "type": "command",
+          "name": "VS Code",
+          "icon": ":/icons/vscode.png",
+          "cmd": "code"
+        },
+        {
+          "type": "menu",
+          "name": "版本控制",
+          "icon": ":/icons/git.png",
+          "items": [
+            {
+              "type": "command",
+              "name": "Git GUI",
+              "icon": ":/icons/git.png",
+              "cmd": "git-gui"
+            },
+            {
+              "type": "command",
+              "name": "Git Bash",
+              "icon": ":/icons/terminal.png",
+              "cmd": "git-bash"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "command",
+      "name": "记事本",
+      "icon": ":/icons/notepad.png",
+      "cmd": "notepad.exe"
+    }
+  ],
+  "window" :[30, 60]
+}
