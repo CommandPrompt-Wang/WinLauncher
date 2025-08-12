@@ -19,7 +19,7 @@
    > 未来的AppImage本身就是隔离环境。依赖也不必担心。
 2. 启动程序
 3. 在任务栏找到程序图标，右键，点击“打开配置目录(&F)”  
-   <img width="200" alt="image" src="https://github.com/user-attachments/assets/e65da3c5-0df8-453e-88d9-e9c3f0952c9a" />  
+   <img width="200" alt="任务栏图标" src="https://github.com/user-attachments/assets/e65da3c5-0df8-453e-88d9-e9c3f0952c9a" />  
    > 目录一般是`%USERPROFILE%\AppData\Local\WinLauncher`（Windows）或者`~/.config/WinLauncher`（Linux）、`~/Library/Preferences/WinLauncher`（MacOS，Qt文档这么说的，没测过。~~因为没苹果 逃.jpg~~）
 4. 编写配置文件`config.json`（见下）
 5. 再次右键任务栏的图标，点击“重载配置(R)”
@@ -69,6 +69,8 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
     ]
 }
 ```
+效果:  
+<img width="200" alt="示例配置文件的效果" src="https://github.com/user-attachments/assets/08f1581a-94ae-4cf1-b096-803fd2dd7c7f" />  
 一个典型的WinLauncher配置文件包含`buttons`和`window`两个主字段：
 - `buttons`: 是一个JSON数组。子成员是JSON对象描述按钮的类型、图标、名称和操作
   - `type`: 描述按钮类型。可以是命令按钮（`command`）或者菜单按钮（`menu`）。
