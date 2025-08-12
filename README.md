@@ -1,5 +1,6 @@
 # WinLauncher
-一个基于JSON的轻量启动器 / A JSON-based lightweight launcher
+一个基于JSON的轻量启动器 / A JSON-based lightweight launcher  
+  
 中文（当前） | [English](README_en.md)
 ## 截图
 <img width="400" alt="软件截图1" src="https://github.com/user-attachments/assets/a08baa5f-2980-4767-b7ee-57216fcaa908" />
@@ -15,8 +16,9 @@
 
 ## 使用方法
 1. [下载软件压缩包](https://github.com/CommandPrompt-Wang/WinLauncher/releases/latest)。并放在合适的位置（要卸载直接删掉就好）。
-   > 按道理dll是齐的，Win下测了下几个环境是没问题的。不过如果你是《精简》汐统的话可能真会缺，要缺少的话就自行上网补吧。记得程序是64位的。
-   > 未来的AppImage本身就是隔离环境。依赖也不必担心。
+   > 按道理dll是齐的，Win下测了下几个环境是没问题的。  
+   > 不过如果你是《精简》汐统的话可能真会缺，要缺少的话就自行上网补吧。记得程序是64位的。  
+   > 未来的AppImage本身就是隔离环境。依赖也不必担心。  
 2. 启动程序
 3. 在任务栏找到程序图标，右键，点击“打开配置目录(&F)”  
    <img width="200" alt="任务栏图标" src="https://github.com/user-attachments/assets/e65da3c5-0df8-453e-88d9-e9c3f0952c9a" />  
@@ -76,22 +78,29 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
   - `type`: 描述按钮类型。可以是命令按钮（`command`）或者菜单按钮（`menu`）。
   - `name`: 描述按钮的名称。可以使用&设定Alt快捷键。
   - `icon`: 描述按钮的图标。可以是任何受`QIcon`支持的图片/图标文件
-    > 在Windows下，还支持图标索引语法，比如`C:/Windows/system32/shell32.dll,114`。
+    > 在Windows下，还支持图标索引语法，比如`C:/Windows/system32/shell32.dll,114`。  
     > 图标索引语法的路径如果含有空格，不需要**也不能**使用引号包裹。
   - `cmd`: `commamd`按钮独有的属性。描述按钮执行的命令行。如果是cli程序将会静默执行。
-    > 这里的路径如果含有空格，**需要**使用引号包裹，比如: `"cmd": "\"E:/Program Files/JiJiDown/JiJiDownForWPF.exe\""`。
+    > 这里的路径如果含有空格，**需要**使用引号包裹，比如: `"cmd": "\"E:/Program Files/JiJiDown/JiJiDownForWPF.exe\""`。  
     > 有些程序，即使不是cli，也可能会静默执行。要避免这种静默执行的情况，可以尝试以下方式:
-    > 1. **使用`start`命令**: Windows可以使用`cmd: "cmd /c \"start ^\"an app.exe^\""`可以强制弹出窗口，但要注意嵌套引号的转义问题。；
+    > 1. **使用`start`命令**: Windows可以使用`cmd: "cmd /c \"start ^\"an app.exe^\""`可以强制弹出窗口，但要注意嵌套引号的转义问题（`\"`是JSON嵌套引号，`^`是`cmd`中嵌套引号的转义符。`^\"`相当于套了两层娃）；
     > 2. **使用`explorer`执行**: Windows也可以考虑使用`cmd: "explorer \"C:\\app.exe\""`，这也可以打开部分程序；但是它不能携带参数启动。路径分隔符也只能使用`\`（当然由于是JSON，应该打`\\`），而不能使用`/`；
     > 3. **针对Linux**: Linux可以使用`xdg-open`
   - `items`: `list`按钮特有的属性。描述这个按钮的弹出菜单中的内容。子成员还是上述的JSON对象。
     > 允许一层层嵌套`menu`菜单。
 - `window`: 也是一个JSON数组。第0、1个子成员是窗口的宽和高
   > `window`字段第2以及后面的元素会被忽略~~也就是"window":[234, 267, 114514, 1919810]是有效的~~
-编写完配置后，记得右键单击托盘图标重新加载配置。然后打开窗口检查布局、图标、按钮行为是否正确。
-  > 在配置文件有错误的情况下，WinLauncher可能会清空配置文件 ~~绝对不是我懒得写回滚（傲娇.jpg）~~。建议拷贝一份作副本。
-然后就可以食用了。可以设置开机启动。WinLauncher会保留上次使用的布局。
-  > 开机自启的相关内容不再赘述。Windows可以在`Shell:Startup`下创建快捷方式、添加任务计划或者修改注册表；Linux用户可以使用`systemd`；MacOS用户则可以从Dock管理启动项。具体方法自行查阅。
+  
+编写完配置后，记得右键单击托盘图标重新加载配置。然后打开窗口检查布局、图标、按钮行为是否正确。  
+   > 在配置文件有错误的情况下，WinLauncher可能会清空配置文件  
+   > ~~绝对不是我懒得写回滚（傲娇.jpg）~~。  
+   > 建议拷贝一份作副本。
+  
+然后就可以食用了。可以设置开机启动。WinLauncher会保留上次使用的布局。  
+   > 开机自启的相关内容不再赘述。  
+   > Windows可以在`Shell:Startup`下创建快捷方式、添加任务计划或者修改注册表；  
+   > Linux用户可以使用`systemd`；  
+   > MacOS用户则可以从Dock管理启动项。具体方法自行查阅。  
 
 ## 注意事项
 1. 程序是静默启动，除非`META+SHIFT+E`或者双击任务栏图标窗口是不会打开的。只要在任务栏见到红黄蓝的立方而且没有报错通知，那就启动成功了
