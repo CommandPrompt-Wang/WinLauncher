@@ -71,6 +71,7 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
             "type": "menu"
         }
     ],
+    "hotkey": "META+Shift+E",
     "window": [
         174,
         102
@@ -80,7 +81,7 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
 Result:  
 <img width="200" alt="Example configuration" src="https://github.com/user-attachments/assets/08f1581a-94ae-4cf1-b096-803fd2dd7c7f" />  
 
-A typical WinLauncher configuration file contains two main fields: `buttons` and `window`:
+A typical WinLauncher configuration file contains three main fields: `buttons`, `hotkey` and `window`:
 - `buttons`: It is a JSON array. The sub-members are JSON objects describing the type, icon, name, and action of the buttons
   - `type`: Describes the type of button. Can be a command button (`command`) or a menu button (`menu`).
   - `name`: Describes the name of the button. You can use & to set the Alt shortcut key.
@@ -96,16 +97,20 @@ For some programs, even if they are not command-line interfaces (CLI), may execu
     > 3.  **For Linux**: Linux user can use `xdg-open`
   - `items`: `list` only. Describes the content of the pop-up menu for this button. The sub-member is still the aforementioned JSON object.
     > Nested `menu` is allowed
+- `hotkey`: A string defining the keyboard shortcut to show/hide the main window.
+  > On Windows, `Win` and `Windows` will be converted to `META`  
+  > If the hotkey is invalid, it will fall back to `META+SHIFT+E`  
 
 - `window`: It is also a JSON array. Format: `[width, height]` (in pixels)
-  > Additional elements are ignored. ~~That is, "window": [234, 567, 114514, 1919810] is valid~~  
+  > Additional elements are ignored. ~~That is, "window": [234, 567, 114514, 1919810] is valid~~
+  > Auto-updated on program/window close. 
 
 After completing the configuration, remember to:
 1. right-click the tray icon to reload the configuration.
 2. Open the window to check whether the layout, icons, and button behaviors are correct.  
   > In case of errors in the configuration file, WinLauncher may clear the configuration file.   
   > It is recommended to make a backup of the file.  
-  > ~~It's definitely NOT because I'm too lazy to write a rollback!(TSUNDERE_FACE.jpg)~~.   
+  > ~~It's definitely NOT because I'm too lazy to write a rollback!(TSUNDERE_FACE.jpg)~~. 
 
 Then you can enjoy it. You can set it to start automatically when the computer boots up. Just WinLauncher will retain the last used layout.
   > About automatic startup, will not be elaborated further.
@@ -118,7 +123,7 @@ Then you can enjoy it. You can set it to start automatically when the computer b
 1. Runs silently - only shows when activated (tray icon or hotkey)
    > Successful start: RGB cube icon appears in tray without error notifications
 2. Default hotkey: `META+SHIFT+E` (Windows: `Win+Shift+E`)
-   > Conflicts possible - use double-click tray icon as alternative, or change the hotkey of that program  
+   > Conflicts possible - change the `hotkey` field in `config.json` (see above).
 3. JSON editing tips:
    - Use online validators like [JSONLint](https://jsonlint.com/)
    - Graphical config editor planned
@@ -129,5 +134,5 @@ Then you can enjoy it. You can set it to start automatically when the computer b
 5. **ALWAYS BACKUP YOUR CONFIGURATION**
 
 ## TODO
-1. `hotkey` field
+~~1. `hotkey` field~~
 2. Graphical configurator
