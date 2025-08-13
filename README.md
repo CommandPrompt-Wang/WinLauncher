@@ -3,9 +3,9 @@
   
 中文（当前） | [English](README_en.md)
 ## 截图
-<img width="400" alt="软件截图1" src="https://github.com/user-attachments/assets/a08baa5f-2980-4767-b7ee-57216fcaa908" />
-<img width="500" alt="软件截图2" src="https://github.com/user-attachments/assets/279df42e-92bc-4c56-8252-b13e8656767b" />
-<img width="905" alt="软件截图3" src="https://github.com/user-attachments/assets/36479f43-4aeb-4189-b4b1-0e6612313585" />
+<img width="350" alt="软件截图1" src="https://github.com/user-attachments/assets/a08baa5f-2980-4767-b7ee-57216fcaa908" />
+<img width="350" alt="软件截图2" src="https://github.com/user-attachments/assets/279df42e-92bc-4c56-8252-b13e8656767b" />
+<img width="705" alt="软件截图3" src="https://github.com/user-attachments/assets/36479f43-4aeb-4189-b4b1-0e6612313585" />
 
 ## 特点
 - 基于JSON快速配置
@@ -65,6 +65,7 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
             "type": "menu"
         }
     ],
+    "hotkey": "META+Shift+E",
     "window": [
         174,
         102
@@ -73,7 +74,7 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
 ```
 效果:  
 <img width="200" alt="示例配置文件的效果" src="https://github.com/user-attachments/assets/08f1581a-94ae-4cf1-b096-803fd2dd7c7f" />  
-一个典型的WinLauncher配置文件包含`buttons`和`window`两个主字段：
+一个典型的WinLauncher配置文件包含`buttons`、`hotkey`和`window`三个主字段：
 - `buttons`: 是一个JSON数组。子成员是JSON对象描述按钮的类型、图标、名称和操作
   - `type`: 描述按钮类型。可以是命令按钮（`command`）或者菜单按钮（`menu`）。
   - `name`: 描述按钮的名称。可以使用&设定Alt快捷键。
@@ -87,9 +88,13 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
     > 2. **使用`explorer`执行**: Windows也可以考虑使用`cmd: "explorer \"C:\\app.exe\""`，这也可以打开部分程序；但是它不能携带参数启动。路径分隔符也只能使用`\`（当然由于是JSON，应该打`\\`），而不能使用`/`；
     > 3. **针对Linux**: Linux可以使用`xdg-open`
   - `items`: `list`按钮特有的属性。描述这个按钮的弹出菜单中的内容。子成员还是上述的JSON对象。
-    > 允许一层层嵌套`menu`菜单。
+    > 允许一层层嵌套`menu`菜单。  
+- `hotkey`: 一个字符串。描述了触发窗口弹出的快捷键。
+  > 在Windows下，`Win`、`Windows`会被转换为`META`  
+  > 如果快捷键有错误，会回退到`META+SHIFT+E`  
 - `window`: 也是一个JSON数组。第0、1个子成员是窗口的宽和高
-  > `window`字段第2以及后面的元素会被忽略~~也就是"window":[234, 267, 114514, 1919810]是有效的~~
+  > `window`字段第2以及后面的元素会被忽略~~也就是"window":[234, 267, 114514, 1919810]是有效的~~  
+  > 程序退出、窗口关闭时该字段会自动更新
   
 编写完配置后，记得右键单击托盘图标重新加载配置。然后打开窗口检查布局、图标、按钮行为是否正确。  
    > 在配置文件有错误的情况下，WinLauncher可能会清空配置文件  
@@ -104,13 +109,12 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
 
 ## 注意事项
 1. 程序是静默启动，除非`META+SHIFT+E`或者双击任务栏图标窗口是不会打开的。只要在任务栏见到红黄蓝的立方而且没有报错通知，那就启动成功了
-2. 快捷键是`META+SHIFT+E`（Windows下，`META`相当于`WIN`），可能有冲突，自行解决（可以先暂时不使用本软件；或者修改冲突软件的快捷键；或者改用双击任务栏图标。不过总之这是我的锅）。
-   > 未来会增加修改快捷键的配置字段`hotkey`。（这个好说）
+2. 快捷键默认是`META+SHIFT+E`（Windows下，`META`相当于`WIN`），可能有冲突，可以修改配置文件（参见上面）。
 3. JSON写起来还是有点麻烦，可以考虑拿着模板到JSON编辑器里面复制粘贴（比如`https://www.json.cn/jsonedit/`）
    > 正在考虑写一个图形化配置界面。~~绝对不是挖坑（傲娇 - 副本.jpg）~~
 4. Windows图标的路径识别逻辑和命令行的路径识别逻辑不甚一样，特别是图标索引语法。所以如果图标成功加载但是点击按钮没反应，请再检查下命令行是否正确（比如斜杠、引号啥的）。
 5. 一定、一定记得备份好配置文件。
 
 ## TODO
-1. `hotkey`字段
+~~1. `hotkey`字段~~
 2. 图形化配置器
