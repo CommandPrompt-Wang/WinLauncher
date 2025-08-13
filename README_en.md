@@ -92,8 +92,11 @@ A typical WinLauncher configuration file contains three main fields: `buttons`, 
     > If the path here contains spaces, it **NEEDS** to be enclosed in quotation marks, eg: `"cmd": "\"E:/Program Files/JiJiDown/JiJiDownForWPF.exe\""`.
 For some programs, even if they are not command-line interfaces (CLI), may execute silently. To avoid such silent execution, you can try the following methods:
     > 1.  **Using the `start` command**: On Windows, you can force a window to pop up using `cmd: "cmd /c \"start ^ \"an app.exe^\""` ~~What the hell is this!!!~~;  
-    >   > `\"`is nested quotation mark in JSON, `^` is the escape char in `cmd`. `^\"` does two-level escaping (nested like Russian dolls).     
-    > 2.  **Using `explorer` to execute**: Windows user can also consider using `cmd: "explorer \"C:\\app.exe\""`, which can also open some programs; however, This method cannot launch programs with parameters. The path separator can be ONLY `\` (of course, in JSON, it should be `\\`), and cannot use `/`;
+    >   > `\"`is nested quotation mark in JSON, `^` is the escape char in `cmd`.   
+    >   > `^\"` does two-level escaping (nested like Russian dolls).     
+    > 2.  **Using `explorer` to execute**: Windows user can also consider using `cmd: "explorer \"C:\\app.exe\""`, which can also open some programs
+    >   > However, This method cannot launch programs with parameters.  
+    >   > The path separator can be ONLY `\` (of course, in JSON, it should be `\\`), and cannot use `/`;
     > 3.  **For Linux**: Linux user can use `xdg-open`
   - `items`: `list` only. Describes the content of the pop-up menu for this button. The sub-member is still the aforementioned JSON object.
     > Nested `menu` is allowed
@@ -114,10 +117,10 @@ After completing the configuration, remember to:
 
 Then you can enjoy it. You can set it to start automatically when the computer boots up. Just WinLauncher will retain the last used layout.
   > About automatic startup, will not be elaborated further.
-  > For Windows, you can create a shortcut under `Shell:Startup`, add a task schedule, or modify the registry;
-  > for Linux users, you can use `systemd`;
-  > for MacOS users, you can manage startup items from the Dock.
-  > Please refer to specific methods on your own.
+  > For Windows, you can create a shortcut under `Shell:Startup`, add a task schedule, or modify the registry;  
+  > for Linux users, you can use `systemd`;  
+  > for MacOS users, you can manage startup items from the Dock.  
+  > Please refer to specific methods on your own.  
 
 ## ~~Warm Tips~~Notes
 1. Runs silently - only shows when activated (tray icon or hotkey)
@@ -134,5 +137,5 @@ Then you can enjoy it. You can set it to start automatically when the computer b
 5. **ALWAYS BACKUP YOUR CONFIGURATION**
 
 ## TODO
-~~1. `hotkey` field~~
+~~1. `hotkey` field~~  
 2. Graphical configurator
