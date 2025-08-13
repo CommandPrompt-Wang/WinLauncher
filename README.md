@@ -116,5 +116,5 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
 5. 一定、一定记得备份好配置文件。
 
 ## TODO
-~~1. `hotkey`字段~~
+~~1. `hotkey`字段~~  
 2. 图形化配置器
