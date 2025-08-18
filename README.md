@@ -84,7 +84,7 @@ https://github.com/user-attachments/assets/eeda2f93-cc39-4ed6-83b2-0aa882f45687
   - `cmd`: `commamd`按钮独有的属性。描述按钮执行的命令行。如果是cli程序将会静默执行。
     > 这里的路径如果含有空格，**需要**使用引号包裹，比如: `"cmd": "\"E:/Program Files/JiJiDown/JiJiDownForWPF.exe\""`。  
     > 有些程序，即使不是cli，也可能会静默执行。要避免这种静默执行的情况，可以尝试以下方式:
-    > 1. **使用`start`命令**: Windows可以使用`cmd: "cmd /c \"start ^\"an app.exe^\""`可以强制弹出窗口，但要注意嵌套引号的转义问题（`\"`是JSON嵌套引号，`^`是`cmd`中嵌套引号的转义符。`^\"`相当于套了两层娃）；
+    > 1. **使用`start`命令**: Windows可以使用`cmd: "cmd /c \"start \"\" \"an app with space.exe\" \""`以强制弹出窗口，但要注意嵌套引号的转义问题（`\"`是JSON嵌套引号）；
     > 2. **使用`explorer`执行**: Windows也可以考虑使用`cmd: "explorer \"C:\\app.exe\""`，这也可以打开部分程序；但是它不能携带参数启动。路径分隔符也只能使用`\`（当然由于是JSON，应该打`\\`），而不能使用`/`；
     > 3. **针对Linux**: Linux可以使用`xdg-open`
   - `items`: `list`按钮特有的属性。描述这个按钮的弹出菜单中的内容。子成员还是上述的JSON对象。
