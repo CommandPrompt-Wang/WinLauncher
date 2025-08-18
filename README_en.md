@@ -91,7 +91,7 @@ A typical WinLauncher configuration file contains three main fields: `buttons`, 
   - `cmd`: `command` only. Describes the command line executed by the button. If it is a CLI program, it will be executed silently.
     > If the path here contains spaces, it **NEEDS** to be enclosed in quotation marks, eg: `"cmd": "\"E:/Program Files/JiJiDown/JiJiDownForWPF.exe\""`.
 For some programs, even if they are not command-line interfaces (CLI), may execute silently. To avoid such silent execution, you can try the following methods:
-    > 1.  **Using the `start` command**: On Windows, you can force a window to pop up using `cmd: "cmd /c \"start ^ \"an app.exe^\""` ~~What the hell is this!!!~~;  
+    > 1.  **Using the `start` command**: On Windows, you can force a window to pop up using `cmd: "cmd /c \"start \"\" \"an app with space.exe\" \""` ~~What the hell is this!!!~~;  
     >   > `\"`is nested quotation mark in JSON, `^` is the escape char in `cmd`.   
     >   > `^\"` does two-level escaping (nested like Russian dolls).     
     > 2.  **Using `explorer` to execute**: Windows user can also consider using `cmd: "explorer \"C:\\app.exe\""`, which can also open some programs
